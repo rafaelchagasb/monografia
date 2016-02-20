@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+<!--		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/Todos_Estilos.css"/>-->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+
+		<script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+		<script src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
+		<script src="{{ STATIC_URL }}js/bootstrap-alerts.js"></script>
+		{% block head %}
+		{% endblock %}
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Mapa Colaborativo</title>
+	</head>
+	<body>
+	<div id="page">
+		{% block title %}
+		{% endblock %}						
+		{% block content %}
+		{% endblock %}				
+		<div id="rodape">
+			<p>Mapa Colaborativo</p>
+			<p>Desenvolvido por <a target="_blank" href="mail://rafael@gmail.com">Rafael Chagas</a></p>
+		</div>
+	</div>
+	
+	</body>
+</html>

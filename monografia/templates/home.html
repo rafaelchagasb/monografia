@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block head%}
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+ 
+	<script type="text/javascript">
+	function createInfoMarker(point, address) {
+	  var marker = new GMarker(point);
+	  
+	  GEvent.addListener(marker, "click", function() {
+		html = '<div style="width: 20em;background:red;">' + adress + '</div>';
+		marker.openInfoWindowHtml(html);
+	  });
+		return marker;
+	  }	 
+	 
+	function initialize() {
+	if (GBrowserIsCompatible()) {
+	   var map = new GMap2(document.getElementById("map_canvas"));
+	   map.setCenter(new GLatLng(-14.264383, -51.943359), 5, G_SATELLITE_MAP);
+	   map.setUIToDefault();
+	   GDownloadUrl("{{ STATIC_URL }}xml/data.xml", function(data) {
+		  var xml = GXml.parse(data);
+		  var markers = xml.documentElement.getElementsByTagName("marker");
+	 
+		  for (var i = 0; i < markers.length; i++) 
+		  {
+		    var latlng = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
+		         parseFloat(markers[i].getAttribute("lng")));
+	 
+			descricao = markers[i].getAttribute("descr");
+		 
+			var marker = createInfoMarker(latlng,descricao);
+			map.addOverlay(marker);									 
+		  }
+	   });
+	}
+	}
+	</script> 
+
+	{{ block.super }}
+{% endblock %}
+
+
+
+{% block content %}
+<div onLoad="initialize()" onUnload="GUnload()"> 
+   <div id="map_canvas" style="width: 700px; height: 500px"></div> 
+</div> 
+{% endblock %}
+

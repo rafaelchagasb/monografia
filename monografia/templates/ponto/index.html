@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+
+{% block content %}
+
+	<div id="contato">
+	{% if mostrar %}<h3>{{ mostrar }}</h3>{% endif %}
+	Informe seus dados abaixo:
+		<div id="form">
+			<form method="post" action="." enctype="multipart/form-data">
+				<fieldset>
+		        <legend>Profile Form</legend>
+					{% csrf_token %}
+					{% bootstrap_form form %}
+				</fieldset>
+				<div class="actions"><button type="submit" class="btn primary"> Enviar</button>
+				<button type="reset" class="btn "> Reset</button></div>
+			</form>
+		</div>
+	</div>
+
+{% endblock content%}
